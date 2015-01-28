@@ -1,7 +1,7 @@
 # Decisions2
 Decisions redo using AngularJS &amp; Sinatra.
 
-> **Note**: This branch (master) contains a skeleton without any app code, perfect for creating a _new_ application or challenge. If you're looking for an example app built with this skeleton, take a look at the [example](/../..//tree/example) branch which includes basic CRUD and RSpec tests.
+> **Note**: Dev Branch -- features will be added here
 
 ### Purpose
 The Sinatra Skeleton:

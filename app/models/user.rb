@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
   include BCrypt
-
   has_many :weights
-  has_many :posts, through: :weights
+  has_many :tables, through: :weights
 
   def password
     @password ||= Password.new(password_digest)

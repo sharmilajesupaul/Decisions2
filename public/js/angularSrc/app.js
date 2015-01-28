@@ -1,4 +1,4 @@
-var app = angular.module('decisions', ['modalDialog']);
+var app = angular.module('decisions', ['directives']);
 
 app.controller('LoginCtrl', function($scope) {
   $scope.modalShown = false;
@@ -6,4 +6,3 @@ app.controller('LoginCtrl', function($scope) {
     $scope.modalShown = !$scope.modalShown;
   };
 });
-

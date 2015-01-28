@@ -10,6 +10,14 @@ get '/' do
   end
 end
 
+# Route that makes a new user
+post '/users/new' do
+  @user = User.create(params[:user])
+  session['user_id'] = @user.id
+
+  redirect "/users/#{@user.id}"
+end
+
 get '/users/:id' do
   # @all_the_things = []
   user_id = params[:id]
@@ -25,28 +33,3 @@ get '/users/:id' do
   erb :profile
 end
 
-
-post '/sessions' do
-  # @error = false
-  p params[:username]
-  p params[:password]
-  @user = User.find_by(username: params[:username])
-  p @user
-  p @user.authenticate(params[:password])
-  if @user
-    if @user.authenticate(params[:password])
-      session['user_id'] = @user.id
-
-      redirect "/users/#{@user.id}"
-    end
-  else
-    @error = true
-    redirect "/"
-  end
-end
-
-delete '/sessions/:id' do
-  session['user_id'] = nil
-
-  redirect '/'
-end

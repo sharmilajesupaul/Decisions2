@@ -18,7 +18,7 @@ gem "httparty"
 
 gem 'crack' # in Gemfile
 gem 'bcrypt'
-gem 'faker'
+# gem 'faker'
 
 group :test do
   gem 'shoulda-matchers'

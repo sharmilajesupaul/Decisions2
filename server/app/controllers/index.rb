@@ -2,7 +2,7 @@
 # require 'json'
 # require 'data_mapper'
 
-client_folder = File.expand_path('../../../client', __FILE__)
+client_folder = File.expand_path('../../../../client', __FILE__)
 
 configure do
   set :public_folder, client_folder
@@ -32,7 +32,7 @@ end
 
 post '/auth/login' do
   input = JSON.parse request.body.read
-  p request_payload
+  p input
   return { token: 'difftoken' }.to_json
 end
 

@@ -19,6 +19,11 @@ gem "httparty"
 gem 'crack' # in Gemfile
 gem 'bcrypt'
 # gem 'faker'
+gem 'json'
+
+gem 'datamapper'
+gem 'dm-sqlite-adapter'
+gem 'rack'
 
 group :test do
   gem 'shoulda-matchers'

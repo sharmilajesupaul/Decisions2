@@ -20,6 +20,9 @@ require "sinatra/reloader" if development?
 
 require 'erb'
 require 'bcrypt'
+require 'json'
+require 'data_mapper'
+
 
 
 # Some helper constants for path-centric logic

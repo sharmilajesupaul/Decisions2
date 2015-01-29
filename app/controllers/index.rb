@@ -1,35 +1,76 @@
+# require 'sinatra'
+# require 'json'
+# require 'data_mapper'
+
+client_folder = File.expand_path('../../../client', __FILE__)
+
+configure do
+  set :public_folder, client_folder
+end
+
+# DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/app.db")
+
+# class User
+#   include DataMapper::Resource
+#   property :id, Serial
+#   property :email, String, :required => true, :unique => true
+#   property :first_name, String
+#   property :last_name, String
+# end
+
+# DataMapper.finalize
+
+# User.auto_upgrade!
+
+
+
 get '/' do
-  # displays the index with user login
-  if session['user_id'] != nil
-    user_id = session['user_id']
-    p user_id
-    redirect "/users/#{user_id}"
-  else
-    # p sessions
-    erb :index
-  end
+  # puts settings.facebook_secret]
+
+  send_file File.join(client_folder, 'index.html')
 end
 
-# Route that makes a new user
-post '/users/new' do
-  @user = User.create(params[:user])
-  session['user_id'] = @user.id
-
-  redirect "/users/#{@user.id}"
+post '/auth/login' do
+  input = JSON.parse request.body.read
+  p request_payload
+  return { token: 'difftoken' }.to_json
 end
 
-get '/users/:id' do
-  # @all_the_things = []
-  user_id = params[:id]
-  @user = User.find(user_id)
-  # @users = User.all
-  # @posts = Post.all
-  # @weights = Weight.all
-
-  # @all_the_things << @posts.flatten
-  # @all_the_things << @weights.flatten
-  # @timeline_objs = @all_the_things.flatten.sort_by{|thing| thing.created_at}.reverse
-  # p @timeline_objss
-  erb :profile
+post '/auth/signup' do
+  # content_type :json
+ return { token: 'token' }.to_json
+ # return 'token'
 end
 
+get '/api/me' do
+
+end
+
+
+
+
+
+
+configure :development do
+  set :token_secret, 'hard to guess string'
+  # set :facebook_secret, '298fb6c080fda239b809ae418bf49700'
+  # set :foursquare_secret, ''
+  # set :github_secret, ''
+  # set :google_secret, ''
+  # set :linkedin_secret, ''
+  # set :twitter_consumer_key, ''
+  # set :twitter_consumer_secreT, ''
+  # set :twitter_callback_url, ''
+end
+
+# configure :production do
+#   set :token_secret, ENV['TOKEN_SECRET']
+#   set :facebook_secret, ENV['FACEBOOK_SECRET']
+#   set :foursquare_secret, ENV['FOURSQUARE_SECRET']
+#   set :github_secret, ENV['GITHUB_SECRET']
+#   set :google_secret, ENV['GOOGLE_SECRET']
+#   set :linkedin_secret, ENV['LINKEDIN_SECRET']
+#   set :twitter_consumer_key, ENV['TWITTER_KEY']
+#   set :twitter_consumer_secreT, ENV['TWITTER_SECRET']
+#   set :twitter_callback_url, ENV['TWITTER_CALLBACK']
+# end
